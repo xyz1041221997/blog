@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header th:fragment="header" class="gird-header">
+    <div class="header-fixed">
+        <div class="header-inner">
+            <a href="http://space.bilibili.com/18758553?" class="header-logo" id="logo">Mr.xia</a>
+            <nav class="nav" id="nav">
+                <ul>
+                    <li><a href="/index">首页</a></li>
+                    <li><a href="/article">文章</a></li>
+                    <li><a href="/diary">时间轴</a></li>
+                    <li><a href="/message">留言</a></li>
+                    <li><a href="/aboutMe">关于</a></li>
+                </ul>
+            </nav>
+            <div class="layui-nav-item" th:if="${session.user == null}">
+                <a href="/user/login" class="blog-user">
+                    登入
+                </a>
+                <!--<a href="/user/regist" class="blog-user">-->
+                    <!--注册-->
+                <!--</a>-->
+            </div>
+
+            <div class="layui-nav-item" id="name" th:if="${session.user != null}">
+                <a  class="blog-user" th:text="${session.user.name}"></a>
+
+                    <dl class="layui-nav-child menu">
+                        <dd> <a href="/article/article">写文章</a> </dd>
+                        <dd><a href="/diary/Diary">写日记</a></dd>
+                        <dd><a href="/user/userSetting">用户设置</a></dd>
+                        <dd><a href="/user/outerLogin">退出用户</a></dd>
+                    </dl>
+
+
+            </div>
+
+
+            <!--<a href="/user/login" class="blog-user"></a>-->
+
+
+            <a class="phone-menu">
+                <i></i>
+                <i></i>
+                <i></i>
+            </a>
+        </div>
+    </div>
+
+    <style>
+        .blog-user:hover+.menu{
+            display:block!important;
+            width:10%;
+            text-align: center;
+            top: 60px!important;
+        }
+        .menu:hover{
+            display:block!important;
+            width:10%;
+            text-align: center;
+            top: 60px!important;
+        }
+        .menu dd:hover{
+            background: #ff714f;
+            color: white;
+        }
+    </style>
+
+</header>
+</body>
+
+<script>NProgress.start();</script>
+<script>
+    window.onload = function () {
+        NProgress.done();
+    };
+</script>
+</html>

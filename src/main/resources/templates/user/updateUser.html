@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.themeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit">
+    <title>用户设置</title>
+    <link rel="stylesheet" href="../../static/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../static/layui/css/layui.css" />
+    <link rel="stylesheet" href="../../static/css/master.css" />
+    <link rel="stylesheet" href="../../static/css/gloable.css" />
+    <link rel="stylesheet" href="../../static/css/nprogress.css" />
+    <link rel="stylesheet" href="../../static/css/blog.css" />
+</head>
+<body>
+<div class="header">
+</div>
+<div th:replace="common/header :: header"></div>
+<!--<h2 th:text="${map['message']}"></h2>-->
+<div class="doc-container" id="doc-container">
+    <div id="big-box">
+        <div id="login-box">
+            <div id="circle"></div>
+            <form action="/user/doRegist">
+                <table style="width: 100%">
+                    <tr>
+                        <td> <input type="text" id="inputpassword" name="password" placeholder="密码" th:value="${session.user.password}"></td>
+                        <td><span>信息2</span></td>
+                    </tr>
+                    <tr>
+                        <td> <input type="text" id="name" name="name" placeholder="用户名" th:value="${session.user.name}"></td>
+                        <td><span>信息2</span></td>
+                    </tr>
+                    <tr>
+                        <td> <input type="text" id="email" name="mail" placeholder="邮箱" th:value="${session.user.mail}"></td>
+                        <td><span>信息3</span></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" value="确认修改"></td>
+                    </tr>
+                    <tr>
+
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+
+
+    <div th:replace="common/footer :: footer"></div>
+    <script src="../../static/layui/layui.js"></script>
+    <script src="../../static/js/yss/gloable.js"></script>
+    <script src="../../static/js/plugins/nprogress.js"></script>
+    <script src="../../static/js/pagecomment.js"></script>
+    <script src="../../static/js/jquery-3.3.1.min.js"></script>
+    <script>NProgress.start();</script>
+    <script>
+        window.onload = function () {
+            NProgress.done();
+        };
+        // $.ajax({
+        //     url:"/goods/UserServlet",
+        //     data:{method:"ajaxEmail",email:text},//传入的数据服务器可以通过request获得
+        //     async:true,//是否异步
+        //     cache:false,//是否服务器缓冲
+        //     type:"post",//发送请求的方法
+        //     dataType:"json",//传回数据的格式
+        //     success:function(result){
+        //         if(result){
+        //             $("#inputmailError").text("邮箱已使用");
+        //             showerror($("#inputmailError"));
+        //             return false;
+        //         }
+        //     }
+        // })
+    </script>
+</body>
+<style>
+
+    #login-box{
+        width: 400px;
+        height: 500px;
+        border-radius: 20px;
+        border: 3px solid #ffffff;
+        margin:20px auto;
+        background-color: rgba(128, 128, 128, 0.50);
+        /*opacity: 0.3;*/
+    }
+    span{
+        color:red;
+    }
+    input{
+        background-color:  rgba(128, 128, 128, 0.50);
+        position: relative;
+        left:50px;
+        width: 250px;
+        height: 30px;
+        border-radius: 20px;
+        margin:10px auto;
+        vertical-align: middle;
+        text-align: center;
+        border:1px solid #ffffff;
+        color:#ffffff;
+    }
+    #circle{
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: 1px solid #ffffff;
+        margin:40px auto;
+    }
+    input::-webkit-input-placeholder,textarea::-webkit-input-placeholder{
+        color:#ffffff;
+    }
+    a{
+        color: #ffffff;
+    }
+</style>
+</html>
+
+

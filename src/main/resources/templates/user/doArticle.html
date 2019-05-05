@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit">
+    <title>写文章</title>
+    <link rel="stylesheet" href="../static/css/message.css" />
+    <link rel="stylesheet" href="../static/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/layui/css/layui.css" />
+    <link rel="stylesheet" href="../static/css/master.css" />
+    <link rel="stylesheet" href="../static/css/gloable.css" />
+    <link rel="stylesheet" href="../static/css/nprogress.css" />
+    <link rel="stylesheet" href="../static/css/blog.css" />
+</head>
+<body>
+<div class="header">
+</div>
+<div th:replace="common/header :: header"></div>
+<div class="doc-container" id="doc-container">
+    <div class="container-fixed">
+        <div class="container-inner">
+            <section class="msg-remark">
+                <h1>写文章</h1>
+                <p>
+                    记下你故事,留下你的纪念
+                </p>
+            </section>
+            <div class="textarea-wrap message" id="textarea-wrap">
+                <form class="layui-form blog-editor" action="/article/createArticle" enctype="multipart/form-data" method="post">
+                    <div>
+                        <input type="file" lay-verify="file" name="file">
+                    </div>
+                    <div>
+                        <input name="title" lay-verify="title" id="title" placeholder="标题">
+                    </div>
+                    <div>
+                        <input name="intro" lay-verify="intro" id="intro" placeholder="简介">
+                    </div>
+                    <div class="layui-form-item">
+                        <textarea name="content" lay-verify="content" id="remarkEditor" placeholder="请输入内容" class="layui-textarea layui-hide"></textarea>
+                    </div>
+                    <div>
+                        <input>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <button class="layui-btn" lay-submit="formLeaveMessage" lay-filter="formLeaveMessage">提交文章</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="f-cb"></div>
+
+    </div>
+</div>
+
+<div th:replace="common/footer :: footer"></div>
+
+<!--<script src="../static/js/message.js"></script>-->
+<script src="../static/layui/layui.js"></script>
+<script src="../static/js/yss/gloable.js"></script>
+<script src="../static/js/plugins/nprogress.js"></script>
+
+<script>NProgress.start();</script>
+<script>
+    window.onload = function () {
+        NProgress.done();
+    };
+    layui.use(['element', 'jquery', 'form', 'layedit', 'flow'], function () {
+        var element = layui.element;
+        var form = layui.form;
+        var $ = layui.jquery;
+        var layedit = layui.layedit;
+        var flow = layui.flow;
+        //评论和留言的编辑器
+        layedit.set({
+            uploadImage:{
+                url:"/file/uploadFile",
+                type:'post'
+            }
+        })
+
+        var editIndex = layedit.build('remarkEditor', {
+            height: 500,
+            // tool: ['face', '|', 'link'],
+        });
+        //评论和留言的编辑器的验证
+        form.verify({
+            content: function (value) {
+                value = $.trim(layedit.getContent(editIndex));
+                if (value == "") return "请输入文章内容";
+                layedit.sync(editIndex);
+            },
+            title: function (value) {
+                if (value == "") return "请输入标题";
+            },
+            file: function(value) {
+                if (value == "") return "请传入文章封面"
+            },
+            intro: function(value) {
+                if (value == "") return "请输入简介"
+            }
+        });
+    });
+</script>
+<style>
+    #title,#intro{
+        border: 1px solid #c4bec0;
+        margin: 10px auto;
+        width: 100%;
+        border-radius: 2px;
+        height: 2rem;
+    }
+</style>
+</body>
+</html>
