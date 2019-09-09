@@ -35,4 +35,10 @@ public interface DiaryDao extends JpaRepository<Diary,Long> {
      */
     @Override
   public void deleteById(Long id);
+
+    @Query(value = "select * from Diary where year = ?1 and publicz = 0 ORDER by create_time DESC",nativeQuery = true)
+    public List<Diary> findDiaryByYear(String year);
+
+    @Query(value = "select year from Diary group by year ORDER by year DESC",nativeQuery = true)
+    public List<String> findYears();
 }

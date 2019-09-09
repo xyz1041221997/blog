@@ -16,7 +16,43 @@ public class Diary {
     @NotEmpty(message = "内容不能为空")
     private String content;
 
-    private Instant createTime;
+    private String year;  //年份
+
+    private Instant createTime;   //创建时间
+
+    private String title;    //标题
+
+    private int publicz;   //是否公开
+
+    @Override
+    public String toString() {
+        return "Diary{" +
+                "id=" + id +
+                ", content='" + content + '\'' +
+                ", year='" + year + '\'' +
+                ", createTime=" + createTime +
+                ", title='" + title + '\'' +
+                ", publicz=" + publicz +
+                ", userId=" + userId +
+                ", uname='" + uname + '\'' +
+                '}';
+    }
+
+    public int getPublicz() {
+        return publicz;
+    }
+
+    public void setPublicz(int publicz) {
+        this.publicz = publicz;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
     /**用户id*/
     private Long userId;
@@ -24,15 +60,12 @@ public class Diary {
     /** 用户姓名*/
     private String uname;
 
-    @Override
-    public String toString() {
-        return "Diary{" +
-                "id=" + id +
-                ", content='" + content + '\'' +
-                ", createTime=" + createTime +
-                ", userId=" + userId +
-                ", uname='" + uname + '\'' +
-                '}';
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
     }
 
     public Long getId() {

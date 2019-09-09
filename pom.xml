@@ -74,6 +74,7 @@
             <version>0.0.20131108.vaadin1</version>
             <scope>compile</scope>
         </dependency>
+
         <!--<dependency>-->
             <!--<groupId>org.csource</groupId>-->
             <!--<artifactId>fastdfs-client-java</artifactId>-->
@@ -92,6 +93,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>cn.xyz.blog.BlogApplication</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>

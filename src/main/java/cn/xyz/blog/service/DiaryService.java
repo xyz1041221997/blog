@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 public class DiaryService implements DiaryServiceImp {
@@ -40,7 +41,18 @@ public class DiaryService implements DiaryServiceImp {
     }
 
     @Override
-    public Page<Diary> findAllDiary(Pageable page) {
-        return  diaryDao.findAll(page);
+    public List<Diary> findAllDiary() {
+        return  diaryDao.findAll();
+    }
+
+    @Override
+    public List<Diary> findDiaryByYear(String year){
+         List<Diary> diarys  =  diaryDao.findDiaryByYear(year);
+         return diarys;
+    }
+    @Override
+    public List<String> findYears(){
+        List<String> years = diaryDao.findYears();
+        return years;
     }
 }

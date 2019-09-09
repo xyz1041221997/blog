@@ -52,7 +52,11 @@ public class DiaryController {
        User user = (User)session.getAttribute("user");
      //  SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
        diary.setCreateTime(Instant.now());
-       diary.setUserId(user.getId());
+        Date time = new Date();
+        SimpleDateFormat sd = new SimpleDateFormat("yyyy");
+        String year = sd.format(time);
+        diary.setYear(year);
+        diary.setUserId(user.getId());
        diary.setUname(user.getName());
        diaryService.createDiary(diary);
        return "diary";

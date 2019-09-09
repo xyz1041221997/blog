@@ -17,7 +17,11 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         //其他静态资源
         registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
         //存储照片的路径 映射
-        registry.addResourceHandler("/temp-rainy/**").addResourceLocations("file:D:/StudySpace/blog/src/main/resources/static/temp-rainy/");
+       // registry.addResourceHandler("/temp-rainy/**").addResourceLocations("file:D:/StudySpace/blog/src/main/resources/static/temp-rainy/");
+        registry.addResourceHandler("**/title/**").addResourceLocations("file:C:/blog/images/title");
+        registry.addResourceHandler("**/content/**").addResourceLocations("file:C:/blog/images/content");
+        registry.addResourceHandler("**/head/**").addResourceLocations("file:C:/blog/images/head");
+
     }
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {

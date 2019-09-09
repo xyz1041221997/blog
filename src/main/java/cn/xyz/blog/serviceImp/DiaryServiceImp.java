@@ -3,6 +3,7 @@ package cn.xyz.blog.serviceImp;
 import cn.xyz.blog.entity.Diary;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
@@ -30,8 +31,13 @@ public interface DiaryServiceImp {
 
     /**
      * 分页查询所有日记
-     * @param var1
+     * @param
      * @return
      */
-    Page<Diary> findAllDiary(Pageable var1);
+    List<Diary> findAllDiary();
+
+
+    public List<Diary> findDiaryByYear(String year);
+
+    public List<String> findYears();
 }

@@ -36,7 +36,7 @@ public class ArticleController {
      * @return
      */
     @PostMapping("/createArticle")
-    public String createArticle(Article article, HttpSession session,MultipartFile file){
+    public String createArticle(Article article, HttpSession session){
         User user = (User)session.getAttribute("user");
         if(user==null){
             return "user/login";
@@ -48,8 +48,6 @@ public class ArticleController {
         article.setUserId(user.getId());
         article.setCreateTime(Instant.now());
 
-        String image = content.fileUpload(file);
-        article.setImage(image);
         articleService.createArticle(article);
         return "redirect:/article";
    }
